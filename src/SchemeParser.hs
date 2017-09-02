@@ -1,4 +1,4 @@
-module Lib where
+module SchemeParser where
 
 import Text.ParserCombinators.Parsec hiding (spaces)
 import Control.Monad
@@ -70,8 +70,3 @@ parseExpr = parseAtom
            x <- try parseList <|> parseDottedList
            char ')'
            return x
-
-readExpr :: String -> String
-readExpr input = case parse parseExpr "lisp" input of
-    Left err -> "No match: " ++ show err
-    Right val -> "Found value"
